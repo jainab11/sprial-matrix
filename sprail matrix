@@ -1,0 +1,50 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> ans;
+        int i = matrix.size();
+        int j = matrix[0].size();
+
+        int count = 0;
+        int total = i * j;
+        // index initialization
+        int startI = 0;
+        int startJ = 0;
+        int endI = i - 1;
+        int endJ = j - 1;
+
+        while (count < total) {
+            // printing starting row
+            for (int index = startJ; count < total && index <= endJ; index++) {
+                ans.push_back(matrix[startI][index]);
+                count++;
+            }
+            startI++;
+
+            // printing ending col
+            for (int index = startI; count < total && index <= endI; index++) {
+                ans.push_back(matrix[index][endJ]);
+                count++;
+            }
+            endJ--;
+
+            // printing ending row
+            for (int index = endJ; count < total && index >= startJ; index--) {
+                ans.push_back(matrix[endI][index]);
+                count++;
+            }
+            endI--;
+
+            // print starting col
+            for (int index = endI; count < total && index >= startI; index--) {
+                ans.push_back(matrix[index][startJ]);
+                count++;
+            }
+            startJ++;
+        }
+
+        return ans;
+    }
+};
+
+i anf j means row and col
